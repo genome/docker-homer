@@ -1,2 +1,2 @@
 source("https://bioconductor.org/biocLite.R")
-biocLite(c("edgeR"))
+biocLite(c("edgeR","DESeq2"))
