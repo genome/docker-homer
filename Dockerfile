@@ -3,6 +3,7 @@ MAINTAINER Chris Miller <c.a.miller@wustl.edu>
 
 LABEL Image for homer on the MGI cluster - uses cmiller-specific annotation directories
 
+RUN touch /opt/431
 #dependencies
 RUN apt-get update && apt-get install -y libnss-sss samtools r-base r-base-dev tabix wget && apt-get clean all
 
@@ -22,10 +23,10 @@ RUN R -f /tmp/rpackages.R
 ## HOMER ##
 RUN mkdir /opt/homer/ && cd /opt/homer && wget http://homer.ucsd.edu/homer/configureHomer.pl && /usr/bin/perl configureHomer.pl -install 
 
+RUN touch /opt/test1235
+
 #use a softlink so that data gets off of unwritable dirs and points to my annotation directory
-RUN rm -rf /opt/homer/data
-RUN ln -s /gscmnt/gc6122/cancer-genomics/medseq/annotations/homer/data /opt/homer/data
-#same with config file that tells where the data is
-RUN rm -f /opt/homer/config.txt && ln -s /gscmnt/gc6122/cancer-genomics/medseq/annotations/homer/config.txt /opt/homer/config.txt
+RUN rm -rf /opt/homer/data && ln -s /storage1/fs1/timley/Active/aml_ppg/analysis/annotation_data/homer/data /opt/homer/data
+RUN rm -f /opt/homer/config.txt && ln -s /storage1/fs1/timley/Active/aml_ppg/analysis/annotation_data/homer/config.txt /opt/homer/config.txt
 
 ENV PATH=${PATH}:/opt/homer/bin/
