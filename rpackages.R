@@ -1,2 +1,2 @@
-source("https://bioconductor.org/biocLite.R")
-biocLite(c("edgeR","DESeq2"))
+install.packages("BiocManager")
+BiocManager::install(c("edgeR","DESeq2"))

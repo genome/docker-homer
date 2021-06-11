@@ -1,4 +1,4 @@
-FROM ubuntu:xenial
+FROM ubuntu:hirsute
 MAINTAINER Chris Miller <c.a.miller@wustl.edu>
 
 LABEL Image for homer
@@ -12,7 +12,8 @@ LABEL Image for homer
 # or outside the pipelines:
 #    LSF_DOCKER_VOLUMES="$LSF_DOCKER_VOLUMES /gscmnt/gc2560/core/annotation_data/homer:/opt/homerdata"
 
-RUN apt-get update && apt-get install -y libnss-sss samtools r-base r-base-dev tabix wget && apt-get clean all
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y libnss-sss samtools r-base r-base-dev tabix wget libssl-dev libcurl4-openssl-dev libxml2-dev && apt-get clean all
 
 #set timezone to CDT to avoid confusion
 #LSF: Java bug that need to change the /etc/timezone.
