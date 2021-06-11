@@ -1,4 +1,4 @@
-FROM ubuntu:hirsute
+FROM ubuntu:focal
 MAINTAINER Chris Miller <c.a.miller@wustl.edu>
 
 LABEL Image for homer
